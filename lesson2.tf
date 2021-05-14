@@ -108,18 +108,18 @@ resource "local_file" "wordpress_config" {
 #  filename = "inventory"
 #}
 
-resource "null_resource" "ansible-run" {
-  provisioner "local-exec" {
-    command = "ansible-playbook -i inventory --user ubuntu --private-key ~/.ssh/aws-key2.pem wordpress.yml"
-  }
-
-  depends_on = [
+#resource "null_resource" "ansible-run" {
+# provisioner "local-exec" {
+#    command = "ansible-playbook -i inventory --user ubuntu --private-key ~/.ssh/aws-key2.pem wordpress.yml"
+#  }
+#
+#  depends_on = [
 #    null_resource.cp_ssh_file,
-    aws_db_instance.mysql-rds,
-    aws_instance.wordpress-1,
-    aws_instance.wordpress-2,
-    aws_instance.bastion
-  ]
+#    aws_db_instance.mysql-rds,
+#    aws_instance.wordpress-1,
+#    aws_instance.wordpress-2,
+#    aws_instance.bastion
+#  ]
 
 }
 
