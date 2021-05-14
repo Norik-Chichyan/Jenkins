@@ -97,16 +97,16 @@ resource "local_file" "wordpress_config" {
 #  ]
 #}
 
-#resource "local_file" "ansible" {
-#  content = templatefile("inventory.tmpl",
-#  { 
-#     wp1-ip       = aws_instance.wordpress-1.private_ip
-#     wp2-ip       = aws_instance.wordpress-2.private_ip
-#     bastion-ip   = aws_instance.bastion.public_ip
-#  }
-#  )
-#  filename = "inventory"
-#}
+resource "local_file" "ansible" {
+  content = templatefile("inventory.tmpl",
+  { 
+     wp1-ip       = aws_instance.wordpress-1.private_ip
+     wp2-ip       = aws_instance.wordpress-2.private_ip
+     bastion-ip   = aws_instance.bastion.public_ip
+  }
+  )
+  filename = "inventory"
+}
 
 #resource "null_resource" "ansible-run" {
 # provisioner "local-exec" {
