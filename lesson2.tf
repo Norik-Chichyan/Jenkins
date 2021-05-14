@@ -74,30 +74,28 @@ resource "local_file" "wordpress_config" {
 
 }
 
-resource "local_file" "ssh_config" {
-  content = templatefile("sshconfig.tmpl",
-    {
-      wp1-ip     = aws_instance.wordpress-1.private_ip
-      wp2-ip     = aws_instance.wordpress-2.private_ip
-      bastion-ip = aws_instance.bastion.public_ip
-    }
-  )
-  filename = "config"
+#resource "local_file" "ssh_config" {
+#  content = templatefile("sshconfig.tmpl",
+#    {
+#      wp1-ip     = aws_instance.wordpress-1.private_ip
+#      wp2-ip     = aws_instance.wordpress-2.private_ip
+#      bastion-ip = aws_instance.bastion.public_ip
+#}
+#  )
+#  filename = "config"
+#}
 
-}
-
-resource "null_resource" "cp_ssh_file" {
-  provisioner "local-exec" {
-    command = "cp config ~/.ssh/config"
-  }
-
-  depends_on = [
-    aws_db_instance.mysql-rds,
-    aws_instance.wordpress-1,
-    aws_instance.wordpress-2,
-    aws_instance.bastion
-  ]
-}
+#resource "null_resource" "cp_ssh_file" {
+#  provisioner "local-exec" {
+#    command = "cp config ~/.ssh/config"
+#  }
+#  depends_on = [
+#    aws_db_instance.mysql-rds,
+#    aws_instance.wordpress-1,
+#    aws_instance.wordpress-2,
+#    aws_instance.bastion
+#  ]
+#}
 
 #resource "local_file" "ansible" {
 #  content = templatefile("inventory.tmpl",
@@ -112,11 +110,11 @@ resource "null_resource" "cp_ssh_file" {
 
 resource "null_resource" "ansible-run" {
   provisioner "local-exec" {
-    command = "ansible-playbook -i inventory wordpress.yml"
+    command = "ansible-playbook -i inventory --user ubuntu --private-key ~/.ssh/aws-key2.pem wordpress.yml"
   }
 
   depends_on = [
-    null_resource.cp_ssh_file,
+#    null_resource.cp_ssh_file,
     aws_db_instance.mysql-rds,
     aws_instance.wordpress-1,
     aws_instance.wordpress-2,
