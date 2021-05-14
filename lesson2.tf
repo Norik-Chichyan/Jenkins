@@ -121,7 +121,7 @@ resource "local_file" "wordpress_config" {
 #    aws_instance.bastion
 #  ]
 
-}
+#}
 
 #output "wordpress" {
 # value = aws_elb.wordpress-lb.public_dns
