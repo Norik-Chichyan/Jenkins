@@ -9,6 +9,14 @@ pipeline {
                 sh 'terraform init'   
             }        
         }
+        stage('Terraform apply') {
+            environment {
+            AWS_ACCESS_KEYS = credentials('aws_cred')
+            }
+            steps {
+                sh 'terraform apply'   
+            }        
+        }
         
         stage('Ansible run') {
            steps {
