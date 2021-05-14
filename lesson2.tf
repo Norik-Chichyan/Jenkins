@@ -88,7 +88,7 @@ resource "local_file" "ssh_config" {
 
 resource "null_resource" "cp_ssh_file" {
   provisioner "local-exec" {
-    command = "cp config ~/.ssh/config"
+    command = "sudo cp config ~/.ssh/config"
   }
 
   depends_on = [
