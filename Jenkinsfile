@@ -19,7 +19,7 @@ pipeline {
         }
          stage('Ansible run') {
            steps {
-                ansiblePlaybook disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'wordpress.yml', vaultCredentialsId: 'aws-key2'
+                ansiblePlaybook installation: 'Ansible', inventory: '/wordpress_pipe/inventory', playbook: '/wordpress_pipe/wordpress.yml', vaultCredentialsId: 'aws-key2'
                 sh 'ls -la'   
             }
          }
