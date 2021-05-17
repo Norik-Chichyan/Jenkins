@@ -110,7 +110,7 @@ resource "local_file" "ansible" {
 
 resource "null_resource" "ansible-run" {
  provisioner "local-exec" {
-    command = "ansible-playbook -i inventory --user ubuntu --private-key ~/.ssh/aws-key2.pem wordpress.yml"
+    command = "ansible-playbook -i inventory --user=ubuntu --private-key=~/.ssh/aws-key2.pem wordpress.yml"
   }
 
   depends_on = [
