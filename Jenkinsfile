@@ -19,9 +19,3 @@ pipeline {
         }
     }
 }
-#         stage('Ansible run') {
-#           steps {
-#                sh 'ansible-playbook -i inventory --user=ubuntu --private-key=/var/lib/jenkins/.ssh/aws-key2.pem wordpress.yml'
-#                sh 'ls -la'   
-#            }
-#         }
