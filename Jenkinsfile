@@ -19,7 +19,7 @@ pipeline {
         }
          stage('Ansible run') {
            steps {
-                ansiblePlaybook installation: 'Ansible', inventory: '/wordpress_pipe/inventory', playbook: '/wordpress_pipe/wordpress.yml', vaultCredentialsId: 'aws-key2'
+                sh 'ansible-playbook -i workspace/wordpress_pipe/inventory --user=ubuntu --private-key=/var/lib/jenkins/.ssh/aws-key2.pem workspace/wordpress_pipe/wordpress.yml'
                 sh 'ls -la'   
             }
          }
