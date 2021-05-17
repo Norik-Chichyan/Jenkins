@@ -1,4 +1,0 @@
-[webservers]
-wordpress-1
-wordpress-2
-host_key_checking = False
