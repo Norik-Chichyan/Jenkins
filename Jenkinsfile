@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Terraform init')
+        stage('Terraform init') {
             environment {
             AWS_ACCESS_KEYS = credentials('aws_cred')
             }
