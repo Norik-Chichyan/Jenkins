@@ -74,7 +74,7 @@ resource "local_file" "wordpress_config" {
 
 }
 
-resource "local_file" "ssh_config" {
+resource "local_file" "ssh_config-1" {
   content = templatefile("sshconfig.tmpl",
     {
       wp1-ip     = aws_instance.wordpress-1.private_ip
@@ -102,7 +102,7 @@ resource "local_file" "ansible" {
   { 
      wp1-ip       = aws_instance.wordpress-1.private_ip
      wp2-ip       = aws_instance.wordpress-2.private_ip
-     bastion-ip   = aws_instance.bastion.public_ip
+#     bastion-ip   = aws_instance.bastion.public_ip
   }
   )
   filename = "inventory"
